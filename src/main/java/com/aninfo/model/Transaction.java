@@ -7,29 +7,29 @@ public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//Que se genere automaticamente de manera secuencial
-    private Long TransactionId; //Es un id unico, por eso el @id
+    private Long transactionId; //Es un id unico, por eso el @id
 
-    private long ClientCbu;
+    private long clientCbu;
 
-    private double Amount;
+    private double amount;
 
     public Transaction(){}
 
     public Transaction(Long _ClientCbu, double _Amount) {
-        this.ClientCbu = _ClientCbu;
-        this.Amount = _Amount;
+        this.clientCbu = _ClientCbu;
+        this.amount = _Amount;
     }
 
     public Long getTransactionClientCbu() {
-        return ClientCbu;
+        return clientCbu;
     }
 
     public double getTransactionAmount() {
-        return Amount;
+        return amount;
     }
 
     public Long getTransactionId() {
-        return TransactionId;
+        return transactionId;
     }
 
 }
