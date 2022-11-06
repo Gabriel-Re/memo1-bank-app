@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)//Que se genere automaticamente de manera secuencial
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//Que se genere automaticamente de manera secuencial
     private Long TransactionId; //Es un id unico, por eso el @id
 
     private long ClientCbu;

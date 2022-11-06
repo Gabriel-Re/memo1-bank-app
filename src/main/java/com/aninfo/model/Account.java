@@ -7,19 +7,19 @@ import java.util.List;
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cbu;
 
     private Double balance;
 
-    private List<Transaction> TransactionList;//Necesito la lsita de transacciones
+    //private List<Transaction> TransactionList;//Necesito la lsita de transacciones
 
     public Account(){
     }
 
     public Account(Double balance) {
         this.balance = balance;
-        this.TransactionList = new ArrayList<>();
+       //this.TransactionList = new ArrayList<>();
     }
 
     public Long getCbu() {
