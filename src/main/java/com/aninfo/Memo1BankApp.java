@@ -1,6 +1,8 @@
 package com.aninfo;
 
+import com.aninfo.exceptions.TransactionNotImplementedTypeException;
 import com.aninfo.model.Account;
+import com.aninfo.model.Transaction;
 import com.aninfo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -65,14 +67,37 @@ public class Memo1BankApp {
 		accountService.deleteById(cbu);
 	}
 
-	@PutMapping("/accounts/{cbu}/withdraw")
+	@PostMapping("/accounts/{cbu}/withdraw")
 	public Account withdraw(@PathVariable Long cbu, @RequestParam Double sum) {
+		//Hay que modificar esta funcion
 		return accountService.withdraw(cbu, sum);
 	}
 
-	@PutMapping("/accounts/{cbu}/deposit")
+	@PostMapping("/accounts/{cbu}/deposit")
 	public Account deposit(@PathVariable Long cbu, @RequestParam Double sum) {
+		//Hay que modificar esta funcion
 		return accountService.deposit(cbu, sum);
+	}
+
+	//Crear transacciones de tipo extraccion y deposito (las de arriba)
+
+	//Tengo que obtener las transacciones dada una cuenta existente
+	//@PathVariable en los parametros de la funcion del controller (se usan para un get en especifico o para un put)
+	@GetMapping("/accounts/{cbu}/transactions")
+	public Account transactionsInAccount(@PathVariable Long cbu) {
+		throw new TransactionNotImplementedTypeException("Transcantions In Account not implemented");
+	}
+
+	//Tengo que obtener una transaccion en particular
+	@GetMapping("/transactions/{transactionId}")
+	public Transaction transactionsById(@PathVariable Long cbu) {
+		throw new TransactionNotImplementedTypeException("Transcantions by ID not implemented");
+	}
+
+	//Tengo que eliminar una transaccion en particular
+	@DeleteMapping("/transactions/{transactionId}")
+	public Transaction deleteTransactionById(@PathVariable Long cbu) {
+		throw new TransactionNotImplementedTypeException("Delete Transcantion by ID not implemented");
 	}
 
 	@Bean

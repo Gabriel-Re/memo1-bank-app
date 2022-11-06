@@ -1,7 +1,8 @@
 package com.aninfo.model;
 
 import javax.persistence.*;
-
+import java.util.ArrayList;
+import java.util.List;
 @Entity
 public class Account {
 
@@ -11,11 +12,14 @@ public class Account {
 
     private Double balance;
 
+    private List<Transaction> TransactionList;//Necesito la lsita de transacciones
+
     public Account(){
     }
 
     public Account(Double balance) {
         this.balance = balance;
+        this.TransactionList = new ArrayList<>();
     }
 
     public Long getCbu() {
