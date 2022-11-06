@@ -13,6 +13,8 @@ public class Account {
 
     private Double balance;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cbu")
     private List<Transaction> TransactionList;//Necesito la lista de transacciones
 
     public Account(){

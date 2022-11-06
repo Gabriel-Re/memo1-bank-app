@@ -15,7 +15,9 @@ public class Transaction {
 
     private TransactionType type;
 
-    public Transaction(){}
+    public Transaction(){
+
+    }
 
     public Transaction(TransactionType _TransactionType, Long _ClientCbu, double _Amount) {
         this.type = _TransactionType;

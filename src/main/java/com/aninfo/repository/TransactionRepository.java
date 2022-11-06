@@ -10,6 +10,7 @@ import java.util.List;
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
     Transaction findTransactionByTransactionId(Long transactionId);
+    List<Transaction> findTransactionsByCbu(Long clientCbu);
 
     @Override
     List<Transaction> findAll();
