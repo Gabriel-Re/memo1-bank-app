@@ -3,6 +3,7 @@ package com.aninfo.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+@SuppressWarnings("JpaAttributeTypeInspection")
 @Entity
 public class Account {
 
@@ -12,14 +13,14 @@ public class Account {
 
     private Double balance;
 
-    //private List<Transaction> TransactionList;//Necesito la lsita de transacciones
+    private List<Transaction> TransactionList;//Necesito la lista de transacciones
 
     public Account(){
     }
 
     public Account(Double balance) {
         this.balance = balance;
-       //this.TransactionList = new ArrayList<>();
+        this.TransactionList = new ArrayList<>();
     }
 
     public Long getCbu() {
@@ -36,6 +37,14 @@ public class Account {
 
     public void setBalance(Double balance) {
         this.balance = balance;
+    }
+
+    public List<Transaction> getTransactions() {
+        return this.TransactionList;
+    }
+
+    public void addTransaction(Transaction _Transaction) {
+        this.TransactionList.add(_Transaction);
     }
 
 }

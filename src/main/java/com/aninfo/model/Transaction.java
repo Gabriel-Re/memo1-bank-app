@@ -13,9 +13,12 @@ public class Transaction {
 
     private double amount;
 
+    private TransactionType type;
+
     public Transaction(){}
 
-    public Transaction(Long _ClientCbu, double _Amount) {
+    public Transaction(TransactionType _TransactionType, Long _ClientCbu, double _Amount) {
+        this.type = _TransactionType;
         this.clientCbu = _ClientCbu;
         this.amount = _Amount;
     }
