@@ -20,6 +20,9 @@ public class Account {
     private Double amountPromoToClaim;
 
     public Account(){
+        this.balance = 0d;
+        this.TransactionList = new ArrayList<>();
+        this.amountPromoToClaim = 0d;
     }
 
     public Account(Double balance) {

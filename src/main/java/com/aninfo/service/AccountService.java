@@ -4,14 +4,13 @@ import com.aninfo.exceptions.DepositNegativeSumException;
 import com.aninfo.exceptions.InsufficientFundsException;
 import com.aninfo.model.Account;
 import com.aninfo.model.Transaction;
-import com.aninfo.model.TransactionType;
 import com.aninfo.repository.AccountRepository;
-import com.aninfo.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -68,15 +67,14 @@ public class AccountService {
 
         Account account = accountRepository.findAccountByCbu(cbu);
         Double balancePromoInAccountToClaim = account.getBalancePromoToClaim();
-        Double extraAmountPromo = sum * 0.1d;
+        Double extraAmountPromo = sum * 0.1;
 
         if(sum >= 2000){
-            if((balancePromoInAccountToClaim + extraAmountPromo) < 500d){
+            if((balancePromoInAccountToClaim + extraAmountPromo) < 500){
                 account.subPromoAmountToClaim(extraAmountPromo);
                 sum += extraAmountPromo;
             }else{
-                extraAmountPromo = 500 - balancePromoInAccountToClaim;
-                account.subPromoAmountToClaim(extraAmountPromo);
+                sum += 500 - balancePromoInAccountToClaim;
             }
         }
 
@@ -88,6 +86,18 @@ public class AccountService {
         accountRepository.save(account);
 
         return account;
+    }
+
+    public Optional<Transaction> getTransaction(Long _Id) {
+        return transactionService.getTransactionById(_Id);
+    }
+
+    public List<Transaction> getTransactionsFromAccount(Long _Cbu) {
+        return transactionService.getTransactionByCbu(_Cbu);
+
+    }
+    public void deleteTransaction(Long _Id) {
+        transactionService.deleteTransaction(_Id);
     }
 
 }

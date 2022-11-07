@@ -1,6 +1,5 @@
 package com.aninfo;
 
-import com.aninfo.exceptions.TransactionNotImplementedTypeException;
 import com.aninfo.model.Account;
 import com.aninfo.model.Transaction;
 import com.aninfo.service.AccountService;
@@ -13,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -69,35 +69,29 @@ public class Memo1BankApp {
 
 	@PostMapping("/accounts/{cbu}/withdraw")
 	public Account withdraw(@PathVariable Long cbu, @RequestParam Double sum) {
-		//Hay que modificar esta funcion
 		return accountService.withdraw(cbu, sum);
 	}
 
-	@PostMapping("/accounts/{cbu}/deposit")
+	@PutMapping("/accounts/{cbu}/deposit")
 	public Account deposit(@PathVariable Long cbu, @RequestParam Double sum) {
-		//Hay que modificar esta funcion
 		return accountService.deposit(cbu, sum);
 	}
 
-	//Crear transacciones de tipo extraccion y deposito (las de arriba)
-
-	//Tengo que obtener las transacciones dada una cuenta existente
-	//@PathVariable en los parametros de la funcion del controller (se usan para un get en especifico o para un put)
 	@GetMapping("/accounts/{cbu}/transactions")
-	public Account transactionsInAccount(@PathVariable Long cbu) {
-		throw new TransactionNotImplementedTypeException("Transcantions In Account not implemented");
+	public List<Transaction> transactionsInAccount(@PathVariable Long _Cbu) {
+		return accountService.getTransactionsFromAccount(_Cbu);
 	}
 
 	//Tengo que obtener una transaccion en particular
 	@GetMapping("/transactions/{transactionId}")
-	public Transaction transactionsById(@PathVariable Long cbu) {
-		throw new TransactionNotImplementedTypeException("Transcantions by ID not implemented");
+	public Optional<Transaction> transactionsById(@PathVariable Long _Id) {
+		return accountService.getTransaction(_Id);
 	}
 
 	//Tengo que eliminar una transaccion en particular
 	@DeleteMapping("/transactions/{transactionId}")
-	public Transaction deleteTransactionById(@PathVariable Long cbu) {
-		throw new TransactionNotImplementedTypeException("Delete Transcantion by ID not implemented");
+	public void deleteTransactionById(@PathVariable Long _Id) {
+		accountService.deleteTransaction(_Id);
 	}
 
 	@Bean
