@@ -17,12 +17,15 @@ public class Account {
     @JoinColumn(name = "cbu")
     private List<Transaction> TransactionList;//Necesito la lista de transacciones
 
+    private Double amountPromo;
+
     public Account(){
     }
 
     public Account(Double balance) {
         this.balance = balance;
         this.TransactionList = new ArrayList<>();
+        this.amountPromo = 0d;
     }
 
     public Long getCbu() {
@@ -35,6 +38,14 @@ public class Account {
 
     public Double getBalance() {
         return balance;
+    }
+
+    public Double getBalancePromo() {
+        return this.amountPromo;
+    }
+
+    public void addPromoAmount(Double amount) {
+        this.amountPromo += amount;
     }
 
     public void setBalance(Double balance) {
