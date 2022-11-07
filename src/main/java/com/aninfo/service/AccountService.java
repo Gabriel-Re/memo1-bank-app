@@ -67,6 +67,19 @@ public class AccountService {
         }
 
         Account account = accountRepository.findAccountByCbu(cbu);
+        Double balancePromoInAccountToClaim = account.getBalancePromoToClaim();
+        Double extraAmountPromo = sum * 0.1d;
+
+        if(sum >= 2000){
+            if((balancePromoInAccountToClaim + extraAmountPromo) < 500d){
+                account.subPromoAmountToClaim(extraAmountPromo);
+                sum += extraAmountPromo;
+            }else{
+                extraAmountPromo = 500 - balancePromoInAccountToClaim;
+                account.subPromoAmountToClaim(extraAmountPromo);
+            }
+        }
+
 
         Transaction transaction = transactionService.createDeposit(cbu,sum);
 

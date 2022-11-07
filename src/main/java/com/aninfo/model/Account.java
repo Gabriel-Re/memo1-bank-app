@@ -17,7 +17,7 @@ public class Account {
     @JoinColumn(name = "cbu")
     private List<Transaction> TransactionList;//Necesito la lista de transacciones
 
-    private Double amountPromo;
+    private Double amountPromoToClaim;
 
     public Account(){
     }
@@ -25,7 +25,7 @@ public class Account {
     public Account(Double balance) {
         this.balance = balance;
         this.TransactionList = new ArrayList<>();
-        this.amountPromo = 0d;
+        this.amountPromoToClaim = 0d;
     }
 
     public Long getCbu() {
@@ -40,12 +40,12 @@ public class Account {
         return balance;
     }
 
-    public Double getBalancePromo() {
-        return this.amountPromo;
+    public Double getBalancePromoToClaim() {
+        return this.amountPromoToClaim;
     }
 
-    public void addPromoAmount(Double amount) {
-        this.amountPromo += amount;
+    public void subPromoAmountToClaim(Double amount) {
+        this.amountPromoToClaim += amount;
     }
 
     public void setBalance(Double balance) {
